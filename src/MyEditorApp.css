@@ -1,5 +1,12 @@
 .MyEditorApp {
-    width: 700;
-    height: 700;
+    width: 500px;
+    height: 500px;
+    padding: 10px;
     border: 1px solid black;
+}
+
+.editor {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid rgb(33, 209, 194);
 }

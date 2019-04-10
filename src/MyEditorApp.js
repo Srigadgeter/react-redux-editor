@@ -15,7 +15,7 @@ class MyEditorApp extends Component {
   handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if(newState){
-      console.log(command); // we could find what action had done by key command. 
+      console.log(command); // We could find what action had done by key command. 
       // It will log value 'bold' if we press 'CTRL+B' (similar to 'italic' & 'underline') after selecting some text.
       this.onChange(newState);
       return 'handled';
@@ -23,13 +23,34 @@ class MyEditorApp extends Component {
     return 'not-handled';
   }
 
+  // Instead of pressing the key, assigning the functions to do that operations
+  // Toggle Button Events
+  onBoldClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+  }
+
+  onItalicClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
+  }
+
+  onUnderlineClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
+
   render() {
     return (
       <div className="MyEditorApp">
-        <Editor 
-          editorState={this.state.editorState} 
-          handleKeyCommand={this.handleKeyCommand}
-          onChange={this.onChange} />
+        <div className="editingOptions">
+          <button onClick={this.onBoldClick}><strong>B</strong></button>
+          <button onClick={this.onItalicClick}><em>i</em></button>
+          <button onClick={this.onUnderlineClick}><u>U</u></button>
+        </div>
+        <div className="editor">
+          <Editor 
+            editorState={this.state.editorState} 
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange} />
+        </div>
       </div>
     );
   }
