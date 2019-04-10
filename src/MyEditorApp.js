@@ -25,25 +25,17 @@ class MyEditorApp extends Component {
 
   // Instead of pressing the key, assigning the functions to do that operations
   // Toggle Button Events
-  onBoldClick = () => {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-  }
-
-  onItalicClick = () => {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
-  }
-
-  onUnderlineClick = () => {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  toggleButtonEvents = (format) => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, format));
   }
 
   render() {
     return (
       <div className="MyEditorApp">
         <div className="editingOptions">
-          <button onClick={this.onBoldClick}><strong>B</strong></button>
-          <button onClick={this.onItalicClick}><em>i</em></button>
-          <button onClick={this.onUnderlineClick}><u>U</u></button>
+          <button onClick={() => this.toggleButtonEvents('BOLD')}><strong>B</strong></button>
+          <button onClick={() => this.toggleButtonEvents('ITALIC')}><em>i</em></button>
+          <button onClick={() => this.toggleButtonEvents('UNDERLINE')}><u>U</u></button>
         </div>
         <div className="editor">
           <Editor 
